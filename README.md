@@ -8,17 +8,17 @@ Các thành phần cơ bản nhất của một ngôn ngữ lập trình là gì
 
 Các biến và hàm phải không? Mọi người đều có thể học những điều này.
 
-Nhưng những gì nằm ngoài những điều cơ bản?
+Nhưng còn những gì bên trên những điều cơ bản này? 
 
-Những **pillars of Javascript** mà bạn nên làm chủ trước khi xem mình là một developer javascript trung cấp (hoặc thậm chí cao cấp)?
+Những **điểm quan trọng của Javascript** mà bạn nên làm chủ trước khi xem mình là một developer javascript trung cấp (hoặc thậm chí cao cấp)?
 
 Có rất nhiều thứ như là: Scope, Closure, Callbacks, Prototype,..
 
-BNhưng trước khi đi sâu hơn vào những khái niệm này, ít nhất bạn nên hiểu
+Nhưng trước khi đi sâu hơn vào những khái niệm này, ít nhất bạn nên hiểu
 **engine Javascript hoạt động như thế nào**.
 
 Trong bài này, chúng tôi sẽ giới thiệu hai phần cơ bản của mọi Javascript
-engine: **the Execution Context and the Call Stack**.
+engine: **the Execution Context và the Call Stack**.
 
 (Đừng sợ. Nó dễ hơn bạn nghĩ).
 
@@ -85,7 +85,7 @@ Tôi đã mong chờ điều đó
 
 Tôi đã nói chính xác những điều này nhiều năm trước.
 
-Trong phần tiếp theo, bạn sẽ khám phá machinery đằng sau **những dòng code đơn giản đó*.
+Trong phần tiếp theo, bạn sẽ khám phá hoạt động đằng sau **những dòng code đơn giản đó*.
 
 ## Javascript: The Execution Context là gì? Javascript Engines
 
@@ -97,13 +97,13 @@ Nếu bạn muốn tạo ấn tượng tốt trong một cuộc phỏng vấn v�
 
 (Và một loạt các thứ khác nữa nhưng tôi sẽ không nêu ra ở đây).
 
-Đừng vội vàng dựa trên những khái niệm này.
+Đừng vội vàng học những khái niệm này.
 
 Bạn không thể học mọi thứ trong một ngày. Nó sẽ tốn thời gian
 
-Tin tốt? Tôi sẽ làm cho mọi thứ dễ hiểu đối với mọi người (ít nhất tôi sẽ thử).
+Tin tốt? Tôi sẽ làm cho mọi thứ dễ hiểu đối với mọi người (ít nhất tôi sẽ cố gắng)
 
-Để hiểu cách Javascript chạy code của bạn, chúng ta phải đáp ứng điều đáng sợ đầu tiên: **the Execution Context**.
+Để hiểu cách Javascript chạy code của bạn, chúng ta phải xem điều đáng sợ đầu tiên: **the Execution Context**.
 
  Execution Context trong Javascript là gì?
 
@@ -175,7 +175,7 @@ Như bạn có thể thấy engine thực hiện hàm pow!
 
 Valentino, Tôi đã đang nhầm lẫn về Execution Context và giờ bạn đang ném Global Memory vào tôi?
 
-Vâng là tôi.
+Vâng đúng vậy.
 
 Hãy xem Global Memory là gì.
 
@@ -227,7 +227,7 @@ Bạn có một bức tranh rõ ràng về **Executation Context, Global Memory*
 
 Nếu không thì hãy dành thời gian của bạn để xem lại phần trước.
 
-Chúng tôi sẽ giới thiệu một phần khác trong câu đố của chúng tôi: **Call Stack**.
+Chúng tôi sẽ giới thiệu một phần khác trong những mảnh ghép của chúng ta: **Call Stack**.
 
 Hãy xem điều gì xảy ra trong quá trình thực thi code.
 
