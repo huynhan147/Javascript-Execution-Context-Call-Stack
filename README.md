@@ -122,20 +122,19 @@ V8 là JavaScript engine mã nguồn mở của Google, được sử dụng tro
 
 SpiderMonkey là JavaScript engine của Mozilla, được sử dụng trong Firefox.
 
-So far we have the Javascript engine and an Execution Context.
+Cho đến nay chúng ta có Javascript engine và Execution Context.
 
-Now it's time to understand how they work together.
+Bây giờ là lúc để hiểu chúng làm việc với nhau như thế nào.
 
-## Javascript: What Is The Execution Context? How It Works?
+## Javascript: The Execution Context là gì? Nó hoạt động như thế nào?
 
-**The engine creates a Global Execution Context** every time you run some Javascript code.
+**Engine tạo ra một Global Execution Context** mỗi khi bạn chạy code Javascript.
 
-Execution Context is a fancy word for describing the environment in which your
-Javascript code runs.
+Execution Context là một từ ưa thích để mô tả môi trường mà code Javascript của bạn chạy.
 
-It's hard to visualize these abstract things, I feel you.
+Tôi biết bạn sẽ khó hình dung những điều trừu tượng này
 
-For now think of the Global Execution Context as a box:
+Bây giờ hãy nghĩ  Global Execution Context như là một cái hộp:
 
 [![Global Execution
 Context](https://res.cloudinary.com/practicaldev/image/fetch/s--jWWiNqCD--/c_l
@@ -144,7 +143,7 @@ zonaws.com/i/ptgf765a4989zd6twwfp.png)](https://res.cloudinary.com/practicalde
 v/image/fetch/s--jWWiNqCD--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880
 /https://thepracticaldev.s3.amazonaws.com/i/ptgf765a4989zd6twwfp.png)
 
-Let's look again at our code:
+Hãy xem lại code của chúng tôi:
 
     
     
@@ -152,75 +151,68 @@ Let's look again at our code:
     }
     
 
-How does the engine read that code?
+Engine đọc code này như thế nào?
 
-Here is a simplified version:
+Đây là một câu trả lời đơn giản:
 
-_**Engine**: Line one. There's a variable! Cool. Let's store it in the Global
-Memory._
+_**Engine**:  Dòng 1. Có một biến! Tuyệt. Hãy lưu trữ nó trong bộ Global Memory._
 
-_**Engine**: Line three. I see a function declaration. Cool. Let's store that
-in the Global Memory too!_
+_**Engine**: Dòng 3. Tôi thấy một khai báo hàm. Tuyệt. Hãy lưu trữ nó trong Global Memory!_
 
-_**Engine**: Looks like I'm done._
+_**Engine**: Có vẻ như tôi đã xong_
 
-If I were to ask you again: how does the browser "see" the following code,
-what would you say?
+Nếu tôi hỏi lại bạn: trình duyệt "xem" đoạn code sau đây như thế nào, bạn sẽ nói gì?
 
-Yeah, it's kind of top to bottom but ...
+Yeah, nó thuộc loại từ trên xuống nhưng .. .
 
-As you can see the engine does not run the function pow!
+Như bạn có thể thấy engine thực hiện hàm pow!
 
-It's a **function declaration**, not a function call.
+Đó là một **khai báo hàm**, chứ không phải một lời gọi hàm.
 
-The above code will translate in some values stored in the **Global Memory**:
-a function declaration and a variable.
+Đoạn mã trên sẽ dịch thành một số giá trị được lưu trong **Global Memory**: một khai báo hàm và một biến
 
 **Global Memory**?
 
-Valentino, I'm already confused by the Execution Context and now you're
-throwing the Global Memory at me?
+Valentino, Tôi đã đang nhầm lẫn về Execution Context và giờ bạn đang ném Global Memory vào tôi?
 
-Yes I am.
+Vâng là tôi.
 
-Let's see what the Global Memory is.
+Hãy xem Global Memory là gì.
 
-## Javascript: What Is The Execution Context? The Global Memory
+## Javascript: Execution Context là gì? The Global Memory
 
-The **Javascript engine has a Global Memory too**.
+ **Javascript engine cũng có một Global Memory**.
 
-The Global Memory contains global variables and function declarations for
-later use.
+Global Memory chứa các biến toàn cục và các khai báo hàm để sử dụng sau này.
 
-If you read "Scope and Closures" by Kyle Simpson you may find that the Global
-Memory overlaps with the concept of Global Scope.
+Nếu bạn đọc "Scope and Closures" của Kyle Simpson, bạn có thể thấy rằng Global Memory trùng lặp với khái niệm Global Scope.
 
-In fact they are the same thing.
+Trong thực tế, chúng là những điều tương tự.
 
-I'm flying 10,000 feet high here, for a good reason.
+Tôi đang bay cao 10.000 feet ở đây, vì một lý do chính đáng.
 
-Those are hard concepts.
+Đó là những khái niệm khó.
 
-But you shouldn't worry for now.
+Nhưng bây giờ bạn không nên lo lắng.
 
-I want you to understand two important pieces of our puzzle.
+Tôi muốn bạn hiểu hai phần quan trọng trong câu đố của chúng tôi.
 
-When the Javascript engine runs your code it creates:
+Khi công cụ Javascript chạy code của bạn, nó tạo ra:
 
-  * a Global Execution context
-  * a Global Memory (also called Global Scope or Global Variable Environment)
+  * một Global Execution context
+  * một Global Memory (còn gọi là Global Scope hoặc Global Variable Environment)
 
-Is everything clear?
+Mọi thứ đã rõ ràng chưa?
 
-If I were you at this point I'll:
+Nếu tôi là bạn vào thời điểm này tôi sẽ:
 
-  * write down some Javascript code
-  * parse the code step by step as you were the engine
-  * make a graphic representation of both the Global Execution context and the Global Memory during the execution
+  * Viết một vài đoạn code Javascript
+  * Phân tích cú pháp của code từng bước một khi bạn là một engine
+  * vẽ ra một đồ thị biểu diễn của cả Global Execution Context và Global Memory trong suốt quá trình thực hiện.
 
-You can write the exercise on paper or with a prototyping tool.
+Bạn có thể viết bài tập trên giấy hoặc bằng công cụ tạo mẫu.
 
-For my tiny example the picture will look like so:
+Đối với ví dụ nhỏ của tôi, hình ảnh sẽ như sau:
 
 [![A graphic representation of Javascript Execution Context / Global
 Memory](https://res.cloudinary.com/practicaldev/image/fetch/s--Ae3LEIz8--/c_li
@@ -229,25 +221,24 @@ onaws.com/i/7sreqswm895lrphw4xy2.png)](https://res.cloudinary.com/practicaldev
 /image/fetch/s--Ae3LEIz8--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/
 https://thepracticaldev.s3.amazonaws.com/i/7sreqswm895lrphw4xy2.png)
 
-In the next section we'll look at another scary thing: the **Call Stack**.
+Trong phần tiếp theo, chúng ta sẽ tìm hiểu một điều đáng sợ khác: **Call Stack**.
 
-Do you have a clear picture of **how** the **Execution Context**, the **Global
-Memory** and the **Javascript engine fits together**?
+Bạn có một bức tranh rõ ràng về **Executation Context, Global Memory** và **Javascript engine** chúng có phù hợp với nhau hay không?
 
-If not take your time to review the previous section.
+Nếu không thì hãy dành thời gian của bạn để xem lại phần trước.
 
-We're going to introduce another piece in our puzzle: the **Call Stack**.
+Chúng tôi sẽ giới thiệu một phần khác trong câu đố của chúng tôi: **Call Stack**.
 
-Let's see what happens during code execution.
+Hãy xem điều gì xảy ra trong quá trình thực thi code.
 
-Let's first recap what happens when the Javascript engin runs your code.
+Trước tiên hãy tóm tắt lại những gì xảy ra khi Javascript engine chạy code của bạn.
 
-It creates:
+Nó tạo ra:
 
-  * a Global Execution context
-  * a Global Memory
+  * một Global Execution context
+  * một Global Memory
 
-Besides that in our example nothing more happened:
+Bên cạnh đó trong ví dụ của chúng tôi không có gì xảy ra nữa:
 
     
     
@@ -255,11 +246,11 @@ Besides that in our example nothing more happened:
     }
     
 
-The code is a pure allocation of values.
+Đoạn code này là một phân bổ thuần túy các giá trị.
 
-Let's take a step further.
+Hãy tiến thêm một bước nữa.
 
-What happens if I call the function?
+Điều gì xảy ra nếu tôi gọi hàm này?
 
     
     
@@ -267,40 +258,37 @@ What happens if I call the function?
     } var res = pow(num);
     
 
-Interesting question.
+Câu hỏi thú vị.
 
-The act of **calling a function in Javascript makes the engine ask for help**.
+Hành động **gọi một hàm trong Javascript khiến engine yêu cầu trợ giúp.**
 
-And that help comes from a friend of the Javascript engine: the **Call
+Và sự trợ giúp đó đến từ một người bạn của Javascript engine: the **Call
 Stack**.
 
-It might not sound obvious but the **Javascript engine needs to keep track of
-what's happening**.
+Nó có thể không rõ ràng nhưng **Javascript engine cần phải theo dõi những gì đang xảy ra.**.
 
-It relies on the Call Stack for that.
+Nó dựa trên Call Stack để thực hiện điều đó.
 
-What is the Call Stack in Javascript?
+Call Stack trong Javascript là gì?
 
-The **Call Stack is like a log of the current execution of the program**.
+**Call Stack giống như một bản ghi tiến trình hiện tại của chương trình**.
 
-In reality it's a data structure: [a
+Trong thực tế nó là một cấu trúc dữ liệu: [một
 stack](https://en.wikipedia.org/wiki/Stack_\(abstract_data_type\)).
 
-How does exactly the Call Stack work?
+Chính xác thì Call Stack hoạt động như thế nào?
 
-Unsurprisingly it has two methods: **push** and **pop**.
+Không có gì đáng ngạc nhiên khi nó có hai method: **push** và **pop**.
 
-**Pushing** is the act of **putting something into the stack**.
+**Pushing** là hành động **đưa một cái gì đó vào stack**.
 
-That is, **when you run a function in Javascript, the engine pushes that
-function into the Call Stack**.
+Tức là, **khi bạn chạy một hàm trong Javascript, engine sẽ đẩy hàm đó vào trong Call Stack.**
 
-Every function call gets pushed into the Call Stack.
+Mọi lời gọi hàm đều được đẩy vào Call Stack.
 
-The **first thing that gets pushed is main()** (or global()), the main thread
-of execution of your Javascript program.
+**Điều đầu tiên được push là main()** (hoặc global()), luồng chính của việc thực thi chương trình Javascript của bạn.
 
-Now, the previous picture will look like so:
+Bây giờ, hình ảnh trước sẽ trông như sau:
 
 [![Javascript Call
 Stack](https://res.cloudinary.com/practicaldev/image/fetch/s--u-ktmKSh--/c_lim
@@ -309,11 +297,11 @@ naws.com/i/ww11po2kybdij4zino4r.png)](https://res.cloudinary.com/practicaldev/
 image/fetch/s--u-ktmKSh--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/h
 ttps://thepracticaldev.s3.amazonaws.com/i/ww11po2kybdij4zino4r.png)
 
-**Popping** on the other end is the act of **removing something from the stack**.
+**Popping** ở đầu bên kia là hành động **xóa thứ gì đó khỏi stack**.
 
-When a function ends executing it gets popped from the Call Stack.
+Khi một hàm kết thúc việc thực thi, nó sẽ được bỏ ra khỏi Call Stack
 
-And our Call Stack will look like the following:
+Và Call Stack của chúng ta sẽ trông giống như sau:
 
 [![Javascript Call Stack
 Pop](https://res.cloudinary.com/practicaldev/image/fetch/s--XzP4eR0c--/c_limit
@@ -322,50 +310,46 @@ ws.com/i/2zbqkyan7uu67xrhpx1b.png)](https://res.cloudinary.com/practicaldev/im
 age/fetch/s--XzP4eR0c--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/htt
 ps://thepracticaldev.s3.amazonaws.com/i/2zbqkyan7uu67xrhpx1b.png)
 
-And now you're ready to master every Javascript concept out there.
+Và bây giờ bạn đã sẵn sàng để làm chủ mọi khái niệm của Javascript.
 
-But where not done! Go to the next section!
+Nhưng ở đây chưa xong! Hãy chuyển đến phần tiếp theo!
 
-## Advanced Javascript: What Is The Execution Context? The Local Execution
-Context
+## Advanced Javascript: The Execution Context là gì? The Local Execution Context
 
-Everything seems clear so far.
+Mọi thứ dường như rõ ràng cho đến lúc này.
 
-Are we missing something?
+Chúng ta đang thiếu một cái gì đó?
 
-We know that the **Javascript engine creates a Global Execution context and a
+Chúng ta biết rằng **Javascript engine tạo ra một Global Execution context và một
 Global Memory**.
 
-Then, when you call a function in your code:
+Sau đó, khi bạn gọi hàm trong code của bạn:
 
-  * the Javascript engine asks for help
-  * that help comes from a friend of the Javascript engine: the **Call Stack**
-  * the **Call Stack keep tracks of what function is being called** in your code
+  * Javascript engine yêu cầu trợ giúp
+  * sự trợ giúp đó đến từ một người bạn của công cụ Javascript: **Call Stack**
+  * **Call Stack theo dõi các hàm đang được gọi** trong code của bạn
 
-Yet **another thing has to happen when you run a function** in Javascript.
+Tuy nhiên, **một điều khác đã xảy ra khi bạn chạy một hàm** trong Javascript.
 
-First, **the function appears in the Global Execution context**.
+Đầu tiên, **hàm xuất hiện trong Global Execution context**.
 
-Then, **another mini-context appears alongside the function**.
+Tiếp theo, **một mini-context khác cũng xuất hiện cùng với hàm đó**
 
-That little new box is called **Local Execution Context**.
+Cái hộp nhỏ mới này được gọi là **Local Execution Context**.
 
-A Local Execution context gets created inside that function!
+Một Local Execution context được tạo bên trong hàm đó!
 
 What??
 
-If you noticed, in the previous picture a new variable appears in the Global
-memory: **var _res_**.
+Nếu bạn nhận thấy, trong hình trước đó một biến mới xuất hiện trong Global memory: **var _res_**.
 
-The variables **_res_** has a value of **undefined at first**.
+Các biến **_res_** có giá trị **ban đầu là undefined**.
 
-Then as soon as **pow** appears in the **Global Execution Context, the
-function executes and _res_ takes its return value**.
+Sau đó, ngay sau **pow** xuất hiện trong **Global Execution Context, hàm đó thực hiện, và _res_ lấy giá trị của nó để trả về.**.
 
-During the execution phase a Local Execution Context gets created, alongside a
-Local Memory for holding up local variables.
+Trong suốt giai đoạn thực thi, một Local Execution Context được tạo ra, cùng với một Local Memory để lưu các biến cục bộ.
 
-What a powerful concept.
+Thật là một khái niệm mạnh mẽ.
 
 [![Local Execution
 Context](https://res.cloudinary.com/practicaldev/image/fetch/s--Zpkb7RDS--/c_l
@@ -374,45 +358,34 @@ zonaws.com/i/8qoepadnbmo8alj8h0vi.png)](https://res.cloudinary.com/practicalde
 v/image/fetch/s--Zpkb7RDS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880
 /https://thepracticaldev.s3.amazonaws.com/i/8qoepadnbmo8alj8h0vi.png)
 
-Keep that in mind.
+Hãy ghi nhớ nó.
 
-Understanding both the **Global and the Local Execution Context is the key for
-mastering Scope and Closures**.
+Hiểu cả **Global và Local Execution Context là chìa khóa để làm chủ Scope và Closures.**
 
-## Javascript: What Is The Execution Context? What Is The Call Stack? Wrapping
-up
+## Javascript: Execution Context là gì?  Call Stack là gì? Gói gọn lại
 
-Can you believe what's behind 4 lines of code?
+Bạn có thể tin những gì đằng sau 4 dòng code?
 
-The Javascript engine creates an **Execution Context, a Global Memory, and a
+Javascript engine tạo ra **Execution Context, một Global Memory, và một
 Call Stack**.
 
-But once you call a function the engine creates a **Local Execution Context
-which has a Local Memory**.
+Nhưng một khi bạn gọi một hàm, engine sẽ tạo ra một **Local Execution Context
+có một Local Memory**.
 
-By the end of this post you should be able to understand what happens when you
-run some Javascript code.
+Đến cuối bài viết này, bạn sẽ có thể hiểu những gì sẽ xảy ra khi bạn chạy một đoạn code Javascript.
 
-Often overlooked, Javascript internals are always seen as misterious things by
-new developers.
+Thường bị bỏ qua, nội dung Javascript luôn được xem là những điều bí ẩn bởi các developer mới.
 
-Yet they are the **key for mastering advanced Javascript concepts**.
+Tuy nhiên, chúng là **chìa khóa để làm chủ các khái niệm Javascript nâng cao**.
 
-If you learn Execution Context, Global Memory, and the Call Stack, **then
-Scope, Closures, Callbacks and other stuff will be easy as a breeze**.
+Nếu bạn hiểu về Execution Context, Global Memory, và Call Stack, **thì 
+Scope, Closures, Callbacks và các nội dung khác sẽ dễ dàng hơn nhiều**.
 
-In particular, understanding the Call Stack is paramount.
+Đặc biệt, sự hiểu biết Call Stack là cực kỳ quan trọng.
 
-All the Javascript will start to make sense once you visualize it: you will
-finally understand **why Javascript is asynchronous** and why we do need
-Callbacks.
+Tất cả các Javascript sẽ bắt đầu có ý nghĩa một khi bạn hình dung nó: cuối cùng bạn sẽ hiểu **tại sao Javascript là không đồng bộ** và tại sao chúng ta cần Callbacks.
 
-Did you know **what's behind 4 lines of Javascript code**?
+Bạn có biết **những gì đằng sau 4 dòng code Javascript**?
 
-Now you know.
+Bây giờ bạn  đã biết
 
-Thanks for reading!
-
-This material is part of my [Advanced Javascript class available both as
-remote 1 to 1 training](https://www.valentinog.com/) or as [on site training
-in Europe](https://www.servermanaged.it/formazione-javascript-react.html).
