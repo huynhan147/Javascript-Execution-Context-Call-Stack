@@ -10,30 +10,28 @@ Các biến và hàm phải không? Mọi người đều có thể học nhữn
 
 Nhưng những gì nằm ngoài những điều cơ bản?
 
-Những **pillars of Javascript** mà bạn nên làm chủ trước khi xem mình là một developer javascript trung cấp (hoặc thậm chí cao cấp)?
+Những **trụ cột trong Javascript** mà bạn nên làm chủ trước khi xem mình là một developer javascript trung cấp (hoặc thậm chí cao cấp)?
 
 Có rất nhiều thứ như là: Scope, Closure, Callbacks, Prototype,..
 
-BNhưng trước khi đi sâu hơn vào những khái niệm này, ít nhất bạn nên hiểu
-**engine Javascript hoạt động như thế nào**.
+Nhưng trước khi đi sâu hơn vào những khái niệm này, ít nhất bạn nên hiểu **engine Javascript hoạt động như thế nào**.
 
-Trong bài này, chúng tôi sẽ giới thiệu hai phần cơ bản của mọi Javascript
-engine: **the Execution Context and the Call Stack**.
+Trong bài này, chúng tôi sẽ giới thiệu hai phần cơ bản của mọi Javascript engine: **the Execution Context và the Call Stack**.
 
-(Đừng sợ. Nó dễ hơn bạn nghĩ).
+(Đừng sợ. Nó dễ hơn bạn nghĩ nhiều).
 
 Sẵn sàng chưa?
 
 Tài liệu này là một phần của [Advanced Javascript class available both as
-remote 1 to 1 training](https://www.valentinog.com/) or as [on site training
+remote 1 to 1 training](https://www.valentinog.com/) hoặc trong cuốn [on site training
 in Europe](https://www.servermanaged.it/formazione-javascript-react.html).
 
 ## Javascript: Execution Context là gì ? Bạn sẽ học những gì?
 
 Trong bài này bạn sẽ học:
 
-  *  Javascript Engine hoạt động như thế nào
-  *  Execution Context trong Javascript
+  * Javascript Engine hoạt động như thế nào
+  * Execution Context trong Javascript
   * Call Stack là gì
   * SỰ khác biệt giữa Global Execution Context và Local Execution Context
 
@@ -43,37 +41,38 @@ Javascript chạy code của bạn như thế nào?
 
 Nếu bạn là một senior developer thì bạn có  thể đã biết câu trả lời
 
-Nếu bạn là người mới bắt đầu, chúng tôi sẽ cùng nhau tìm hiểu.
+Nếu bạn là người mới bắt đầu, chúng ta sẽ cùng nhau tìm hiểu.
 
 Sự thật là, bên trong Javascript không hề đơn giản.
 
 Nhưng tôi đảm bảo bạn có thể học chúng
 
-Và vào thời điểm bạn học chúng, bạn sẽ cảm thấy được trao quyền và thông minh hơn.
+Và vào thời điểm bạn học chúng, bạn sẽ cảm thấy đầy quyền lực và thông minh hơn.
 
 Bằng cách xem xét chức năng bên trong Javascript, bạn sẽ trở thành một Javascript developer tốt hơn, ngay cả khi bạn không thể nắm vững từng chi tiết.
 
 Bây giờ, hãy xem đoạn code sau:
 
     
-    
-    var num = 2; function pow(num) { return num * num;
+ ```   
+    var num = 2; 
+    function pow(num) { return num * num;
     }
-    
+ ```  
 
-Đã xong?
+Xong chưa?
 
-Nó trông không khó!
+Nó có vẻ không khó!
 
 Bây giờ hãy cho tôi biết: **bạn nghĩ trình duyệt sẽ thực hiện đoạn code đó theo thứ tự nào**?
 
 Nói cách khác, nếu bạn là trình duyệt, bạn sẽ đọc đoạn code đó như thế nào?
 
-Nghe có vẻ dễ dàng
+Nghe thì có vẻ dễ dàng
 
 Hầu hết mọi người nghĩ rằng "yeah, trình duyệt thực thi hàm pow và trả về kết quả, sau đó nó gán 2 vào num."
 
-Bạn có muốn biết câu trả lời của học sinh của tôi không?
+Bạn có muốn biết các câu trả lời của học sinh của tôi không?
 
 _Từ trên xuống dưới_
 
@@ -83,9 +82,9 @@ _JS engine sẽ chạy từng dòng_ (kiểu như vậy)
 
 Tôi đã mong chờ điều đó
 
-Tôi đã nói chính xác những điều này nhiều năm trước.
+Tôi cũng đã nói những điều này nhiều năm trước.
 
-Trong phần tiếp theo, bạn sẽ khám phá machinery đằng sau **những dòng code đơn giản đó*.
+Trong phần tiếp theo, bạn sẽ khám phá cơ chế đằng sau **những dòng code đơn giản đó*.
 
 ## Javascript: The Execution Context là gì? Javascript Engines
 
@@ -93,21 +92,21 @@ Bạn có muốn trở thành Javascript developer mức trung bình không?
 
 Tôi cá là bạn sẽ không.
 
-Nếu bạn muốn tạo ấn tượng tốt trong một cuộc phỏng vấn về Javascript, ít nhất bạn nên biết **cách Javascript chạy code của bạn**
+Nếu bạn muốn tạo ấn tượng tốt trong một cuộc phỏng vấn về Javascript, ít nhất bạn nên biết **cách Javascript thực hiện code của bạn**
 
 (Và một loạt các thứ khác nữa nhưng tôi sẽ không nêu ra ở đây).
 
-Đừng vội vàng dựa trên những khái niệm này.
+Đừng vội vàng lướt qua những khái niệm này.
 
-Bạn không thể học mọi thứ trong một ngày. Nó sẽ tốn thời gian
+Bạn không thể học mọi thứ trong một ngày. Nó sẽ tốn nhiều thời gian
 
-Tin tốt? Tôi sẽ làm cho mọi thứ dễ hiểu đối với mọi người (ít nhất tôi sẽ thử).
+Tin tốt? Tôi sẽ làm cho mọi thứ dễ hiểu đối với mọi người (ít nhất thì tôi sẽ cố).
 
-Để hiểu cách Javascript chạy code của bạn, chúng ta phải đáp ứng điều đáng sợ đầu tiên: **the Execution Context**.
+Để hiểu cách Javascript chạy code của bạn, chúng ta phải tìm hiểu thứ đáng sợ đầu tiên: **the Execution Context**.
 
  Execution Context trong Javascript là gì?
 
-**Mỗi khi bạn chạy Javascript trong trình duyệt** (hoặc trên Node) **engine sẽ đi qua một loạt các bước.**.
+**Mỗi khi bạn chạy Javascript trong trình duyệt** (hoặc trên NodeJS) **engine sẽ đi qua một loạt các bước.**.
 
 Một trong những bước này liên quan đến việc **tạo ra Global Execution Context**.
 
@@ -115,16 +114,15 @@ Nhưng chờ đã, **engine là gì**?
 
 Đó, Javascript engine là một "công cụ" để chạy code Javascript.
 
-Hiện nay có 2 Javascript engine nổi bật là **Google V8** và
-**SpiderMonkey**.
+Hiện nay có 2 Javascript engine nổi bật là **Google V8** và **SpiderMonkey**.
 
-V8 là JavaScript engine mã nguồn mở của Google, được sử dụng trong Google Chrome và 122 Node.js.
+V8 là JavaScript engine mã nguồn mở của Google, được sử dụng trong Google Chrome và Node.js.
 
 SpiderMonkey là JavaScript engine của Mozilla, được sử dụng trong Firefox.
 
-Cho đến nay chúng ta có Javascript engine và Execution Context.
+Tới đây chúng ta đã có Javascript engine và Execution Context.
 
-Bây giờ là lúc để hiểu chúng làm việc với nhau như thế nào.
+Bây giờ là lúc để tìm hiểu xem chúng làm việc với nhau như thế nào.
 
 ## Javascript: The Execution Context là gì? Nó hoạt động như thế nào?
 
@@ -146,10 +144,11 @@ v/image/fetch/s--jWWiNqCD--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880
 Hãy xem lại code của chúng tôi:
 
     
-    
-    var num = 2; function pow(num) { return num * num;
+    ```
+    var num = 2; 
+    function pow(num) { return num * num;
     }
-    
+    ```
 
 Engine đọc code này như thế nào?
 
@@ -175,7 +174,7 @@ Như bạn có thể thấy engine thực hiện hàm pow!
 
 Valentino, Tôi đã đang nhầm lẫn về Execution Context và giờ bạn đang ném Global Memory vào tôi?
 
-Vâng là tôi.
+Vâng đúng vậy.
 
 Hãy xem Global Memory là gì.
 
@@ -185,11 +184,11 @@ Hãy xem Global Memory là gì.
 
 Global Memory chứa các biến toàn cục và các khai báo hàm để sử dụng sau này.
 
-Nếu bạn đọc "Scope and Closures" của Kyle Simpson, bạn có thể thấy rằng Global Memory trùng lặp với khái niệm Global Scope.
+Nếu bạn đọc "Scope and Closures" của Kyle Simpson, bạn có thể thấy rằng khái niệm của Global Memory trùng lặp với khái niệm Global Scope.
 
-Trong thực tế, chúng là những điều tương tự.
+Trong thực tế, chúng thực sự giống nhau.
 
-Tôi đang bay cao 10.000 feet ở đây, vì một lý do chính đáng.
+Vì một lý do chính đáng, tôi đang lơ lửng ở 10.000 feet ở đây.
 
 Đó là những khái niệm khó.
 
@@ -208,9 +207,9 @@ Nếu tôi là bạn vào thời điểm này tôi sẽ:
 
   * Viết một vài đoạn code Javascript
   * Phân tích cú pháp của code từng bước một khi bạn là một engine
-  * vẽ ra một đồ thị biểu diễn của cả Global Execution Context và Global Memory trong suốt quá trình thực hiện.
+  * vẽ ra một đồ thị biểu diễn cả Global Execution Context và Global Memory trong suốt quá trình thực hiện.
 
-Bạn có thể viết bài tập trên giấy hoặc bằng công cụ tạo mẫu.
+Bạn có thể viết bài tập trên giấy hoặc bằng các công cụ tạo mẫu.
 
 Đối với ví dụ nhỏ của tôi, hình ảnh sẽ như sau:
 
@@ -241,9 +240,10 @@ Nó tạo ra:
 Bên cạnh đó trong ví dụ của chúng tôi không có gì xảy ra nữa:
 
     
-    
+    ```
     var num = 2; function pow(num) { return num * num;
     }
+    ```
     
 
 Đoạn code này là một phân bổ thuần túy các giá trị.
@@ -252,17 +252,17 @@ Hãy tiến thêm một bước nữa.
 
 Điều gì xảy ra nếu tôi gọi hàm này?
 
-    
+    ```
     
     var num = 2; function pow(num) { return num * num;
     } var res = pow(num);
-    
+    ```
 
-Câu hỏi thú vị.
+Đây là câu hỏi thú vị.
 
-Hành động **gọi một hàm trong Javascript khiến engine yêu cầu trợ giúp.**
+Hành động **gọi một hàm trong Javascript buộc engine phải yêu cầu được trợ giúp.**
 
-Và sự trợ giúp đó đến từ một người bạn của Javascript engine: the **Call
+Và sự trợ giúp đó đến từ một người bạn của Javascript engine: một **Call
 Stack**.
 
 Nó có thể không rõ ràng nhưng **Javascript engine cần phải theo dõi những gì đang xảy ra.**.
@@ -273,8 +273,7 @@ Call Stack trong Javascript là gì?
 
 **Call Stack giống như một bản ghi tiến trình hiện tại của chương trình**.
 
-Trong thực tế nó là một cấu trúc dữ liệu: [một
-stack](https://en.wikipedia.org/wiki/Stack_\(abstract_data_type\)).
+Trong thực tế nó là một cấu trúc dữ liệu: [một stack](https://en.wikipedia.org/wiki/Stack_\(abstract_data_type\)).
 
 Chính xác thì Call Stack hoạt động như thế nào?
 
